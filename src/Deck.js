@@ -34,8 +34,5 @@ class Deck {
   }
 }
 
-const deck1 = new Deck()
-console.log(deck1.deck)
-
 // Exports
 module.exports = Deck
