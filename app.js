@@ -9,4 +9,5 @@
 const Deck = require('./src/Deck')
 
 const deck = new Deck()
+deck.shuffle()
 console.log(deck.deck)

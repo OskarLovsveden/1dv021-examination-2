@@ -32,6 +32,31 @@ class Deck {
       }
     }
   }
+
+  /**
+   * Returns this.deck shuffled.
+   *
+   * @returns {array} - this.deck shuffled.
+   * @memberof Deck
+   */
+  shuffle () {
+    let m = this.deck.length
+    let t
+    let i
+
+    // While there remain elements to shuffle…
+    while (m) {
+      // Pick a remaining element…
+      i = Math.floor(Math.random() * m--)
+
+      // And swap it with the current element.
+      t = this.deck[m]
+      this.deck[m] = this.deck[i]
+      this.deck[i] = t
+    }
+
+    return this.deck
+  }
 }
 
 // Exports
