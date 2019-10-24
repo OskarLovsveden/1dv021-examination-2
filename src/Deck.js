@@ -4,8 +4,10 @@
  *
  * @author Oskar Lövsveden
  * @version 1.0
-*/
+ */
 'use strict'
+
+const Card = require('./Card')
 
 /**
  * Class representing a deck of cards.
@@ -19,16 +21,18 @@ class Deck {
   constructor () {
     /**
      * An array representing a deck of cards.
-     * @type {Array} - An array.
-    */
+     * @type {Array}
+     */
     this.deck = []
 
     const suits = ['♡', '♤', '♧', '♢']
-    const values = ['Ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King']
+    const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 
     for (const suit in suits) {
       for (const value in values) {
-        this.deck.push(`${values[value]} ${suits[suit]}`)
+        const card = new Card(ranks[value] + suits[suit], values[value])
+        this.deck.push(card)
       }
     }
   }
