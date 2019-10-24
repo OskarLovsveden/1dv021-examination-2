@@ -5,6 +5,7 @@
  * @author Oskar Lövsveden
  * @version 1.0
  */
+
 'use strict'
 
 const Card = require('./Card')
@@ -31,7 +32,7 @@ class Deck {
 
     for (const suit in suits) {
       for (const value in values) {
-        const card = new Card(ranks[value] + suits[suit], values[value])
+        const card = { suits: ranks[value] + suits[suit], value: values[value] }
         this.deck.push(card)
       }
     }
