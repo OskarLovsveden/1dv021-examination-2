@@ -6,8 +6,9 @@
  */
 'use strict'
 
-const Deck = require('./src/Deck')
-
-const deck = new Deck()
-deck.shuffle()
-console.log(deck.deck)
+//  Ange antal spelare
+//  Ange när spelare och giv är nöjda
+//
+//  Starta en omgång med dessa villkor
+//  Returnera resultatet som en console.log
+//

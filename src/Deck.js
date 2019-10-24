@@ -63,5 +63,12 @@ class Deck {
   }
 }
 
+/**
+ * KORTLEK innehåller 52kort
+ * skapar en kortlek
+ * blandar en kortlek
+ *
+*/
+
 // Exports
 module.exports = Deck
