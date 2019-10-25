@@ -7,8 +7,8 @@
  */
 'use strict'
 
-const Deck = require('./src/Deck')
-const Hand = require('./src/Hand')
+const Deck = require('./Deck')
+const Hand = require('./Hand')
 
 /**
  *
@@ -16,7 +16,7 @@ const Hand = require('./src/Hand')
  * @class Game
  */
 class Game {
-  constructor () {
+  constructor() {
     //  Skapar kortlek
     const deck = new Deck()
 
@@ -24,17 +24,24 @@ class Game {
     deck.shuffle()
 
     //  Skapar spelare
-    const player = new Hand('Player')
+    createPlayers(num) {
+      for (let i = 1; i <= num; i++) {
+        const hand = []
+        const player = {
+          Name: 'Player ' + i,
+          ID: i,
+          Points: 0,
+          Hand: hand
+        }
+        players.push(player)
+      }
+    }
+    createPlayers()
 
     //  Skapar dealer
-    const dealer = new Hand()
+    // const dealer = new Hand()
     //  Ger varje spelare ett kort
     //  For-loop - genom spelarna
-    function getCard () {
-      player.hand.push(deck.deck.shift())
-    }
-
-    getCard()
 
     //
     //  Spelare spelar mot dealer:
@@ -43,12 +50,8 @@ class Game {
 
     //  if / else
     //  Ta ett till - Gör någonting (ge ett till kort) / stanna
-    //  När spelare stannar - Dealers tur
-    function getCardDealer () {
-      dealer.hand.push(deck.deck.shift())
-    }
+    //  När spelare stannar - Skapa dealer. Dealers tur.
 
-    getCardDealer()
     //
     //  När ska spelare stanna?
     //  Har spelare 5 kort - gör vad?
@@ -78,4 +81,4 @@ module.exports = Game
  * Har mängden spelare
  * Har spelregler
  *
-*/
+ */

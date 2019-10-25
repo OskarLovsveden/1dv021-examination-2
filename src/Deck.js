@@ -8,8 +8,6 @@
 
 'use strict'
 
-const Card = require('./Card')
-
 /**
  * Class representing a deck of cards.
  * @class Deck
@@ -68,6 +66,7 @@ class Deck {
  * KORTLEK innehåller 52kort
  * skapar en kortlek
  * blandar en kortlek
+ * delar ut kort
  *
 */
 
