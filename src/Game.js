@@ -11,21 +11,27 @@ const Deck = require('./Deck')
 const Hand = require('./Hand')
 
 /**
- *
+ * Class representing a game of 21.
  *
  * @class Game
  */
 class Game {
-  constructor() {
+  /**
+   *  Creates an instance of Game.
+   *  @param {number} [players=0]
+   *  @memberof Game
+   */
+  constructor(players = 0) {
     //  Skapar kortlek
     const deck = new Deck()
+    this.players = players
 
     //  Blandar kortlek
     deck.shuffle()
 
     //  Skapar spelare
-    createPlayers(num) {
-      for (let i = 1; i <= num; i++) {
+    createPlayers (this.players) {
+      for (let i = 1; i <= this.players; i++) {
         const hand = []
         const player = {
           Name: 'Player ' + i,
@@ -33,10 +39,9 @@ class Game {
           Points: 0,
           Hand: hand
         }
-        players.push(player)
+        this.players.push(player)
       }
     }
-    createPlayers()
 
     //  Skapar dealer
     // const dealer = new Hand()

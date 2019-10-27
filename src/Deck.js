@@ -60,6 +60,16 @@ class Deck {
 
     return this.deck
   }
+
+  /**
+   * Deals a card to the specified hand.
+   *
+   * @param {array} - The array to recieve a card.
+   * @memberof Deck
+   */
+  dealCard (array) {
+    array.push(this.deck.shift())
+  }
 }
 
 /**
