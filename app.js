@@ -7,10 +7,13 @@
 
 'use strict'
 const Game = require('./src/Game')
-const game = new Game(5)
+const game = new Game(10)
 // GameOn(numOfPlayers = 0, limitValue = 0, )
 game.createPlayer()
 console.log(game.hands)
+game.dealCard()
+console.log(game.hands)
+console.log(game.hands[0].Hand)
 
 //  Ange antal spelare
 //  Ange när spelare och giv är nöjda

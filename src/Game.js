@@ -18,7 +18,7 @@ const Hand = require('./Hand')
 class Game {
   /**
    *  Creates an instance of Game.
-   *  @param {number} [players=0]
+   *  @param {number} [enterPlayers=0]
    *  @memberof Game
    */
   constructor (enterPlayers = 0) {
@@ -29,16 +29,14 @@ class Game {
     this.enterPlayers = enterPlayers
     this.hands = []
   }
-  //  Blandar kortlek
 
-  //  Skapar spelare
   /**
    * Creates a player.
    *
    * @memberof Game
    */
   createPlayer () {
-    for (let i = 1; i <= this.enterPlayers; i++) {
+    for (let i = 1; i < this.enterPlayers; i++) {
       const hand = new Hand()
       var player = {
         Name: `${hand.name} ${i}`,
@@ -49,8 +47,15 @@ class Game {
       this.hands.push(player)
     }
   }
-  //  Ger varje spelare ett kort
 
+  //  Ger varje spelare ett kort
+  dealCard () {
+    const deck = new Deck()
+    for (let i = 0; i < this.hands.length; i++) {
+      deck.dealCard(this.hands[i].Hand)
+    }
+    return this.hands
+  }
   //  For-loop - genom spelarna
 
   //
