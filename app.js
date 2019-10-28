@@ -6,8 +6,11 @@
  */
 
 'use strict'
-
+const Game = require('./src/Game')
+const game = new Game(5)
 // GameOn(numOfPlayers = 0, limitValue = 0, )
+game.createPlayer()
+console.log(game.hands)
 
 //  Ange antal spelare
 //  Ange när spelare och giv är nöjda

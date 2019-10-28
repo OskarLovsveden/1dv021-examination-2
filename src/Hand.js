@@ -26,6 +26,12 @@ class Hand {
     this.name = name
 
     /**
+     * The points of the player.
+     * @type {number}
+    */
+    this.points = 0
+
+    /**
      * An array representing the current hand.
      * @type {Array}
      */
@@ -39,11 +45,10 @@ class Hand {
    * @memberof Hand
    */
   sum () {
-    let total = 0
     for (let i = 0; i < this.hand.length; i++) {
-      total += this.hand[i].value
+      this.points += this.hand[i].value
     }
-    return total
+    return this.points
   }
 }
 
