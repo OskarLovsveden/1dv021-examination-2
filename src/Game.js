@@ -36,7 +36,7 @@ class Game {
    * @memberof Game
    */
   createPlayer () {
-    for (let i = 1; i < this.enterPlayers; i++) {
+    for (let i = 1; i <= this.enterPlayers; i++) {
       const hand = new Hand()
       var player = {
         Name: `${hand.name} ${i}`,
@@ -49,13 +49,13 @@ class Game {
   }
 
   //  Ger varje spelare ett kort
-  dealCard () {
-    const deck = new Deck()
-    for (let i = 0; i < this.hands.length; i++) {
-      deck.dealCard(this.hands[i].Hand)
-    }
-    return this.hands
-  }
+  /**
+   * Gives all players a card.
+   *
+   * @returns {array} An array of all active hands.
+   * @memberof Game
+   */
+
   //  For-loop - genom spelarna
 
   //
@@ -67,25 +67,25 @@ class Game {
   //  Ta ett till - Gör någonting (ge ett till kort) / stanna
   //  När spelare stannar - Skapa dealer. Dealers tur.
 
-  //
-  //  När ska spelare stanna?
-  //  Har spelare 5 kort - gör vad?
-  //  Har spelare blackjack - gör vad?
-  //  Har spelare över 21 - BUSTED
-  //  Har spelare 2 ess i rad i starthanden - Andra räknas som 1
-  //  Har spelare fått 3 ess?
-  //  Har spelare fått alla 4 ess
-  //
-  //
-  //
-  //  If / statements - vem vinner
-  //
-  //
-  //  Se vinnare
-  //  Släng kort
-  //  Fortsätt till nästa spelare
-  //
-  //
+//
+//  När ska spelare stanna?
+//  Har spelare 5 kort - gör vad?
+//  Har spelare blackjack - gör vad?
+//  Har spelare över 21 - BUSTED
+//  Har spelare 2 ess i rad i starthanden - Andra räknas som 1
+//  Har spelare fått 3 ess?
+//  Har spelare fått alla 4 ess
+//
+//
+//
+//  If / statements - vem vinner
+//
+//
+//  Se vinnare
+//  Släng kort
+//  Fortsätt till nästa spelare
+//
+//
 }
 
 // Exports

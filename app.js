@@ -7,14 +7,16 @@
 
 'use strict'
 const Game = require('./src/Game')
+const Deck = require('./src/Deck')
 const game = new Game(10)
+const deck = new Deck()
+deck.shuffle()
 // GameOn(numOfPlayers = 0, limitValue = 0, )
 game.createPlayer()
 console.log(game.hands)
-game.dealCard()
+deck.dealOneCardEach(game.hands)
 console.log(game.hands)
 console.log(game.hands[0].Hand)
-
 //  Ange antal spelare
 //  Ange när spelare och giv är nöjda
 //

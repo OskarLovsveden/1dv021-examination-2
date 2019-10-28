@@ -30,7 +30,7 @@ class Deck {
 
     for (const suit in suits) {
       for (const value in values) {
-        const card = { suits: ranks[value] + suits[suit], value: values[value] }
+        const card = { NumberAndSuit: ranks[value] + suits[suit], Value: values[value] }
         this.deck.push(card)
       }
     }
@@ -62,13 +62,25 @@ class Deck {
   }
 
   /**
-   * Deals a card to the specified hand.
+   * Deals one card to a specified hand.
    *
-   * @param {array} - The array to recieve a card.
+   * @param {array} - The specified hand to recieve a card.
    * @memberof Deck
    */
-  dealCard (array) {
+  dealOneCard (array) {
     array.push(this.deck.shift())
+  }
+
+  /**
+   * Deals one card each to the specified hands.
+   *
+   * @param {array} - The specified array of hands to receive one card each.
+   * @memberof Deck
+   */
+  dealOneCardEach (array) {
+    for (let i = 0; i < array.length; i++) {
+      this.dealOneCard(array[i].Hand)
+    }
   }
 }
 

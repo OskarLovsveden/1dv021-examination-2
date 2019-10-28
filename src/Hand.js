@@ -56,6 +56,8 @@ class Hand {
  * Har kort
  * Har namn
  * Gör - räknar ut summa
+ * har summa
+ * har en identitet
  *
  */
 
