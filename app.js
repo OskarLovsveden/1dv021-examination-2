@@ -10,7 +10,6 @@ const Game = require('./src/Game')
 const Deck = require('./src/Deck')
 const game = new Game(10)
 const deck = new Deck()
-// GameOn(numOfPlayers = 0, limitValue = 0, )
 
 //  Ange antal spelare
 //  Ange när spelare och giv är nöjda

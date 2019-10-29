@@ -45,13 +45,29 @@ class Hand {
    * @memberof Hand
    */
   sum () {
+    let total = 0
     for (let i = 0; i < this.hand.length; i++) {
-      this.points += this.hand[i].Value
+      total += this.hand[i].Value
     }
-    return this.points
+    this.points = total
+  }
+
+  /**
+   * Returns a string of the current players hand.
+   *
+   * @returns {string} - A string of the current players hand.
+   * @memberof Hand
+   */
+  toString () {
+    let str = ''
+    for (let i = 0; i < this.hand.length; i++) {
+      str += this.hand[i].NumberAndSuit + ' '
+    }
+    return this.points <= 21
+      ? console.log(`${this.name}: ${str}(${this.points})`)
+      : console.log(`${this.name}: ${str}(${this.points}) BUSTED!`)
   }
 }
-
 /**
  * Har kort
  * Har namn

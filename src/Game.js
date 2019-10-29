@@ -18,14 +18,17 @@ const Hand = require('./Hand')
 class Game {
   /**
    *  Creates an instance of Game.
-   *  @param {number} [enterPlayers=0]
+   *  @param {number} [enterPlayers = 0]
+   *  @param {number} [limit = 0]
    *  @memberof Game
    */
-  constructor (enterPlayers = 0) {
+  constructor (enterPlayers = 0, limit = 17) {
     //  Skapar kortlek
     this.deck = new Deck()
+    this.hand = new Hand()
 
     this.enterPlayers = enterPlayers
+    this.limit = limit
     this.players = []
   }
 
@@ -41,37 +44,56 @@ class Game {
     }
   }
 
-  // ger varje spelare 1 kort
+  /**
+   * Deals a card to each player.
+   *
+   * @memberof Game
+   */
   dealOneCardEach () {
     for (let i = 0; i < this.players.length; i++) {
-      const card = this.deck.dealOneCard()
-      this.players[i].hand.push(card)
+      this.players[i].hand.push(this.deck.dealOneCard())
     }
   }
 
+  /**
+   * Starts the game.
+   *
+   * @memberof Game
+   */
   start () {
-    game.createPlayer()
-    game.dealOneCardEach()
+    this.createPlayer()
+    this.dealOneCardEach()
+    this.playRound()
   }
 
-  //  Spelare spelar mot dealer:
-  //  Kolla summa
-  //  Kallar på hand.sum
+  /**
+   * Plays a round for 1 player.
+   *
+   * @memberof Game
+   */
+  playRound () {
+    for (let i = 0; i < this.players.length; i++) {
+      this.players[i].sum()
+      // if players points is under its set value(limit)...
+      while (this.players[i].points < this.limit) {
+        // ...hit me
+        this.players[i].hand.push(this.deck.dealOneCard())
+        this.players[i].sum()
+      }
+      // if players points is over 21...
+      if (this.players[i].points > 21) {
+        this.players[i].toString()
+      } else if (this.players[i].points === 21 || this.players[i].hand.length === 5) {
+        this.players[i].toString()
+      } else {
+        console.log('stopped')
+        // create dealer
+        const dealer = new Hand()
+      }
+      // Compare score of player and dealer
+    }
+  }
 
-  //  if / else
-  //  Ta ett till - Gör någonting (ge ett till kort) / stanna
-  //  När spelare stannar - Skapa dealer. Dealers tur.
-
-//
-//  När ska spelare stanna?
-//  Har spelare 5 kort - gör vad?
-//  Har spelare blackjack - gör vad?
-//  Har spelare över 21 - BUSTED
-//  Har spelare 2 ess i rad i starthanden - Andra räknas som 1
-//  Har spelare fått 3 ess?
-//  Har spelare fått alla 4 ess
-//
-//
 //
 //  If / statements - vem vinner
 //
@@ -91,6 +113,10 @@ module.exports = Game
  * Har spelregler
  *
  */
-const game = new Game(10)
+const game = new Game(3)
 game.createPlayer()
 game.dealOneCardEach()
+game.playRound()
+// console.log(game.players)
+// console.log(game.players[0].hand)
+// console.log(game.players[0].sum())
