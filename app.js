@@ -8,7 +8,7 @@
 'use strict'
 const Game = require('./src/Game')
 const Deck = require('./src/Deck')
-const game = new Game(10)
+const game = new Game()
 const deck = new Deck()
 
 //  Ange antal spelare

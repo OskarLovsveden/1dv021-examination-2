@@ -36,6 +36,8 @@ class Hand {
      * @type {Array}
      */
     this.hand = []
+
+    this.ace = false
   }
 
   /**
@@ -45,11 +47,19 @@ class Hand {
    * @memberof Hand
    */
   sum () {
-    let total = 0
+    let totalOfCards = 0
     for (let i = 0; i < this.hand.length; i++) {
-      total += this.hand[i].Value
+      if (this.hand[i].Value === 14) {
+        this.ace = true
+      }
+      totalOfCards += this.hand[i].Value
     }
-    this.points = total
+    if (this.ace && totalOfCards > 21) {
+      totalOfCards -= 13
+      this.ace = false
+    }
+
+    this.points = totalOfCards
   }
 
   /**

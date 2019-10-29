@@ -87,8 +87,24 @@ class Game {
         this.players[i].toString()
       } else {
         console.log('stopped')
+        this.players[i].toString()
         // create dealer
         const dealer = new Hand()
+        while (dealer.points < this.limit) {
+          dealer.hand.push(this.deck.dealOneCard())
+          dealer.sum()
+        }
+        dealer.toString()
+        if (dealer.points > this.players[i].points && dealer.points <= 21) {
+          // Dealer wins
+          console.log('Dealer wins')
+        } else if (dealer.points === this.players[i].points) {
+          // Draw
+          console.log('Dealer wins')
+        } else {
+          // Player wins
+          console.log('Player wins')
+        }
       }
       // Compare score of player and dealer
     }
@@ -113,7 +129,7 @@ module.exports = Game
  * Har spelregler
  *
  */
-const game = new Game(3)
+const game = new Game(10)
 game.createPlayer()
 game.dealOneCardEach()
 game.playRound()
