@@ -46,7 +46,7 @@ class Hand {
    */
   sum () {
     for (let i = 0; i < this.hand.length; i++) {
-      this.points += this.hand[i].value
+      this.points += this.hand[i].Value
     }
     return this.points
   }

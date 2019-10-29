@@ -23,11 +23,10 @@ class Game {
    */
   constructor (enterPlayers = 0) {
     //  Skapar kortlek
-    const deck = new Deck()
-    deck.shuffle()
+    this.deck = new Deck()
 
     this.enterPlayers = enterPlayers
-    this.hands = []
+    this.players = []
   }
 
   /**
@@ -37,28 +36,24 @@ class Game {
    */
   createPlayer () {
     for (let i = 1; i <= this.enterPlayers; i++) {
-      const hand = new Hand()
-      var player = {
-        Name: `${hand.name} ${i}`,
-        ID: i,
-        Points: hand.points,
-        Hand: hand.hand
-      }
-      this.hands.push(player)
+      const player = new Hand('Player ' + i)
+      this.players.push(player)
     }
   }
 
-  //  Ger varje spelare ett kort
-  /**
-   * Gives all players a card.
-   *
-   * @returns {array} An array of all active hands.
-   * @memberof Game
-   */
+  // ger varje spelare 1 kort
+  dealOneCardEach () {
+    for (let i = 0; i < this.players.length; i++) {
+      const card = this.deck.dealOneCard()
+      this.players[i].hand.push(card)
+    }
+  }
 
-  //  For-loop - genom spelarna
+  start () {
+    game.createPlayer()
+    game.dealOneCardEach()
+  }
 
-  //
   //  Spelare spelar mot dealer:
   //  Kolla summa
   //  Kallar på hand.sum
@@ -96,3 +91,6 @@ module.exports = Game
  * Har spelregler
  *
  */
+const game = new Game(10)
+game.createPlayer()
+game.dealOneCardEach()

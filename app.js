@@ -10,17 +10,11 @@ const Game = require('./src/Game')
 const Deck = require('./src/Deck')
 const game = new Game(10)
 const deck = new Deck()
-deck.shuffle()
 // GameOn(numOfPlayers = 0, limitValue = 0, )
-game.createPlayer()
-console.log(game.hands)
-deck.dealOneCardEach(game.hands)
-console.log(game.hands)
-console.log(game.hands[0].Hand)
+
 //  Ange antal spelare
 //  Ange när spelare och giv är nöjda
 //
 //  Starta en omgång med dessa villkor
 
-//  Returnera resultatet som en console.log
-//  .console.log('Player #(number of the player): (Cards) (sum)(Potentially BUSTED!)\nDealer  : (Cards) (sum)(Potentially BUSTED!)\n(X) wins!')
+//  Returnera resultatet med en "toString()"

@@ -23,7 +23,11 @@ class Deck {
      * @type {Array}
      */
     this.deck = []
+    this.generateDeck()
+    this.shuffle()
+  }
 
+  generateDeck () {
     const suits = ['♡', '♤', '♧', '♢']
     const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
     const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
@@ -67,20 +71,9 @@ class Deck {
    * @param {array} - The specified hand to recieve a card.
    * @memberof Deck
    */
-  dealOneCard (array) {
-    array.push(this.deck.shift())
-  }
-
-  /**
-   * Deals one card each to the specified hands.
-   *
-   * @param {array} - The specified array of hands to receive one card each.
-   * @memberof Deck
-   */
-  dealOneCardEach (array) {
-    for (let i = 0; i < array.length; i++) {
-      this.dealOneCard(array[i].Hand)
-    }
+  dealOneCard () {
+    const card = this.deck.shift()
+    return card
   }
 }
 
