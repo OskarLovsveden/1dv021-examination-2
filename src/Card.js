@@ -11,15 +11,15 @@
 /**
  * Creates a Card instance representing a playing card.
  * @constructor
- * @param {string} - The suit and number of the card.
+ * @param {string} - The number and suit of the card.
  * @param {number} - The numerical value of the card.
  */
-function Card (suit, value) {
+function Card (numberAndSuit, value) {
   /**
-     * The suit and number of the card.
+     * The number and suit of the card.
      * @type {string}
      */
-  this.suit = suit
+  this.numberAndSuit = numberAndSuit
 
   /**
      * The numerical value of the card.

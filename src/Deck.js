@@ -8,6 +8,8 @@
 
 'use strict'
 
+const Card = require('./Card')
+
 /**
  * Class representing a deck of cards.
  * @class Deck
@@ -38,7 +40,7 @@ class Deck {
 
     for (const suit in suits) {
       for (const value in values) {
-        const card = { NumberAndSuit: ranks[value] + suits[suit], Value: values[value] }
+        const card = new Card(ranks[value] + suits[suit], values[value])
         this.deck.push(card)
       }
     }

@@ -37,7 +37,15 @@ class Hand {
      */
     this.hand = []
 
+    this.limit = 15
+
     this.ace = false
+  }
+
+  randomizeLimit () {
+    console.log(this)
+    this.limit = Math.floor((Math.random() * 5) + 15)
+    console.log(this)
   }
 
   /**
@@ -49,10 +57,10 @@ class Hand {
   sum () {
     let totalOfCards = 0
     for (let i = 0; i < this.hand.length; i++) {
-      if (this.hand[i].Value === 14) {
+      if (this.hand[i].value === 14) {
         this.ace = true
       }
-      totalOfCards += this.hand[i].Value
+      totalOfCards += this.hand[i].value
     }
     if (this.ace && totalOfCards > 21) {
       totalOfCards -= 13
@@ -71,21 +79,13 @@ class Hand {
   toString () {
     let str = ''
     for (let i = 0; i < this.hand.length; i++) {
-      str += this.hand[i].NumberAndSuit + ' '
+      str += this.hand[i].numberAndSuit + ' '
     }
     return this.points <= 21
       ? console.log(`${this.name}: ${str}(${this.points})`)
       : console.log(`${this.name}: ${str}(${this.points}) BUSTED!`)
   }
 }
-/**
- * Har kort
- * Har namn
- * Gör - räknar ut summa
- * har summa
- * har en identitet
- *
- */
 
 // Exports
 module.exports = Hand

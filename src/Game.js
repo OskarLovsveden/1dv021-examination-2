@@ -19,17 +19,15 @@ class Game {
   /**
    *  Creates an instance of Game.
    *  @param {number} [enterPlayers = 0]
-   *  @param {number} [limit = 0]
    *  @memberof Game
    */
-  constructor (enterPlayers = 0, limit = 17) {
+  constructor (enterPlayers = 0) {
     //  Skapar kortlek
     this.deck = new Deck()
     this.deck.generateDeck()
     this.deck.shuffleDeck()
 
     this.enterPlayers = enterPlayers
-    this.limit = limit
     this.players = []
   }
 
@@ -39,8 +37,9 @@ class Game {
    * @memberof Game
    */
   createPlayer () {
-    for (let i = 1; i <= this.enterPlayers; i++) {
-      const player = new Hand('Player ' + i)
+    for (let i = 0; i < this.enterPlayers; i++) {
+      const player = new Hand('Player ' + (i + 1))
+      player.randomizeLimit()
       this.players.push(player)
     }
   }
@@ -63,7 +62,7 @@ class Game {
    * @memberof Game
    */
   dealCardsUntilPlayerLimit (player) {
-    while (player.points < this.limit) {
+    while (player.points < player.limit) {
       this.deck.mergeThrowAndDeck()
       player.hand.push(this.deck.dealOneCard())
       player.sum()
