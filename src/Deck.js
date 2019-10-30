@@ -23,8 +23,12 @@ class Deck {
      * @type {Array}
      */
     this.deck = []
-    this.generateDeck()
-    this.shuffle()
+
+    /**
+     * An array representing the throwpile of a deck.
+     * @type {Array}
+    */
+    this.throw = []
   }
 
   generateDeck () {
@@ -40,13 +44,14 @@ class Deck {
     }
   }
 
+  // Fisher-Yates Shuffle
   /**
    * Returns this.deck shuffled.
    *
    * @returns {array} - this.deck shuffled.
    * @memberof Deck
    */
-  shuffle () {
+  shuffleDeck () {
     let m = this.deck.length
     let t
     let i
@@ -68,7 +73,6 @@ class Deck {
   /**
    * Deals one card to a specified hand.
    *
-   * @param {array} - The specified hand to recieve a card.
    * @memberof Deck
    */
   dealOneCard () {
@@ -76,14 +80,6 @@ class Deck {
     return card
   }
 }
-
-/**
- * KORTLEK innehåller 52kort
- * skapar en kortlek
- * blandar en kortlek
- * delar ut kort
- *
-*/
 
 // Exports
 module.exports = Deck

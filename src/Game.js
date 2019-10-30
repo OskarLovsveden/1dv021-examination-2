@@ -25,7 +25,8 @@ class Game {
   constructor (enterPlayers = 0, limit = 17) {
     //  Skapar kortlek
     this.deck = new Deck()
-    this.hand = new Hand()
+    this.deck.generateDeck()
+    this.deck.shuffleDeck()
 
     this.enterPlayers = enterPlayers
     this.limit = limit
@@ -60,10 +61,10 @@ class Game {
    *
    * @memberof Game
    */
-  start () {
+  startGame () {
     this.createPlayer()
     this.dealOneCardEach()
-    this.playRound()
+    this.playersPlay()
   }
 
   /**
@@ -71,52 +72,73 @@ class Game {
    *
    * @memberof Game
    */
-  playRound () {
+  playersPlay () {
     for (let i = 0; i < this.players.length; i++) {
       this.players[i].sum()
-      // if players points is under its set value(limit)...
+
       while (this.players[i].points < this.limit) {
-        // ...hit me
         this.players[i].hand.push(this.deck.dealOneCard())
         this.players[i].sum()
       }
-      // if players points is over 21...
       if (this.players[i].points > 21) {
-        this.players[i].toString()
-      } else if (this.players[i].points === 21 || this.players[i].hand.length === 5) {
-        this.players[i].toString()
-      } else {
-        console.log('stopped')
-        this.players[i].toString()
-        // create dealer
         const dealer = new Hand()
-        while (dealer.points < this.limit) {
-          dealer.hand.push(this.deck.dealOneCard())
-          dealer.sum()
-        }
-        dealer.toString()
-        if (dealer.points > this.players[i].points && dealer.points <= 21) {
-          // Dealer wins
-          console.log('Dealer wins')
-        } else if (dealer.points === this.players[i].points) {
-          // Draw
-          console.log('Dealer wins')
-        } else {
-          // Player wins
-          console.log('Player wins')
-        }
+        this.logPlayerScore(this.players[i], dealer, false)
+      } else if (this.players[i].points === 21 || this.players[i].hand.length === 5) {
+        const dealer = new Hand()
+        this.logPlayerScore(this.players[i], dealer, true)
+      } else {
+        this.dealerPlays(i)
       }
-      // Compare score of player and dealer
+      // push to throw
     }
   }
 
+  /**
+   * The dealers round.
+   *
+   * @param {number} indexOfPlayers - The index of the array of players
+   * @memberof Game
+   */
+  dealerPlays (indexOfPlayers) {
+    const dealer = new Hand()
+    while (dealer.points < this.limit) {
+      dealer.hand.push(this.deck.dealOneCard())
+      dealer.sum()
+    }
+    if (dealer.points > this.players[indexOfPlayers].points && dealer.points <= 21) {
+      // Dealer wins
+      this.logPlayerScore(this.players[indexOfPlayers], dealer, false)
+    } else if (dealer.points === this.players[indexOfPlayers].points) {
+      // Draw
+      this.logPlayerScore(this.players[indexOfPlayers], dealer, false)
+    } else {
+      // Player wins
+      this.logPlayerScore(this.players[indexOfPlayers], dealer, true)
+    }
+  }
+
+  /**
+   *  Logs the hand, score of player and dealer.
+   *  Also logs the winner of the current round.
+   *
+   * @param {Object} player
+   * @param {Object} dealer
+   * @param {Boolean} playerWin
+   * @memberof Game
+   */
+  logPlayerScore (player, dealer, playerWin) {
+    player.toString()
+    dealer.toString()
+    if (playerWin === true) {
+      console.log('player win\n-')
+    } else {
+      console.log('dealer win\n-')
+    }
+  }
+
+// Släng kort
+// blanda in slängkort om deck = 1
 //
-//  If / statements - vem vinner
-//
-//
-//  Se vinnare
-//  Släng kort
-//  Fortsätt till nästa spelare
 //
 //
 }
@@ -126,13 +148,6 @@ module.exports = Game
 
 /**
  * Har mängden spelare
- * Har spelregler
- *
  */
-const game = new Game(10)
-game.createPlayer()
-game.dealOneCardEach()
-game.playRound()
-// console.log(game.players)
-// console.log(game.players[0].hand)
-// console.log(game.players[0].sum())
+// const game = new Game(10)
+// game.startGame()
