@@ -7,12 +7,7 @@
 
 'use strict'
 const Game = require('./src/Game')
-const game = new Game(20)
+
+// Ange antal spelare
+const game = new Game(10)
 game.startGame()
-
-//  Ange antal spelare
-//  Ange när spelare och giv är nöjda
-//
-//  Starta en omgång med dessa villkor
-
-//  Returnera resultatet med en "toString()"

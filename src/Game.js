@@ -18,11 +18,10 @@ const Hand = require('./Hand')
 class Game {
   /**
    *  Creates an instance of Game.
-   *  @param {number} [enterPlayers = 0]
+   *  @param {number} [enterPlayers = 0] - The number of players to enter the game.
    *  @memberof Game
    */
   constructor (enterPlayers = 0) {
-    //  Skapar kortlek
     this.deck = new Deck()
     this.deck.generateDeck()
     this.deck.shuffleDeck()
@@ -82,7 +81,7 @@ class Game {
   }
 
   /**
-   * Plays a round for 1 player.
+   * Plays a round for one player at the time.
    *
    * @memberof Game
    */
@@ -117,21 +116,17 @@ class Game {
     this.dealCardsUntilPlayerLimit(dealer)
 
     if (dealer.points > this.players[indexOfPlayers].points && dealer.points <= 21) {
-      // Dealer wins
       this.logPlayerScore(this.players[indexOfPlayers], dealer, false)
     } else if (dealer.points === this.players[indexOfPlayers].points) {
-      // Draw
       this.logPlayerScore(this.players[indexOfPlayers], dealer, false)
     } else {
-      // Player wins
       this.logPlayerScore(this.players[indexOfPlayers], dealer, true)
     }
     this.throwCardsInHand(dealer.hand)
   }
 
   /**
-   *  Logs the hand, score of player and dealer.
-   *  Also logs the winner of the current round.
+   *  Logs the hand, score of player and dealer and winner of the current round.
    *
    * @param {Object} player
    * @param {Object} dealer
@@ -158,11 +153,6 @@ class Game {
     this.dealOneCardEach()
     this.playersPlay()
   }
-// Släng kort
-// blanda in slängkort om deck = 1
-//
-//
-//
 }
 
 // Exports

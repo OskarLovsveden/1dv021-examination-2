@@ -9,10 +9,10 @@
 'use strict'
 
 /**
- * Creates a Card instance representing a playing card.
- * @constructor
- * @param {string} - The number and suit of the card.
- * @param {number} - The numerical value of the card.
+ * Class representing a playing card.
+ * @class
+ * @param {string} numberAndSuit - The number and suit of the card.
+ * @param {number} value - The numerical value of the card.
  */
 function Card (numberAndSuit, value) {
   /**
@@ -26,6 +26,14 @@ function Card (numberAndSuit, value) {
      * @type {number}
      */
   this.value = value
+}
+
+/**
+ * Returns the value of a card
+ * @returns the value of a card
+*/
+Card.prototype.getValue = function () {
+  return this.value
 }
 
 // Exports

@@ -1,5 +1,5 @@
 /**
- * Module for a hand.
+ * Module for a hand of a player.
  * @module src/Hand
  *
  * @author Oskar Lövsveden
@@ -12,78 +12,76 @@
  * Class representing a hand of a player or dealer.
  * @class Hand
  */
-class Hand {
+function Hand (name = 'Dealer') {
   /**
-   * Creates an instance of Hand.
-   * @param {string} - The name of the player. Defaults to 'Dealer'.
-   * @memberof Hand
+  * The name of the player.
+  * @type {string}
+  */
+  this.name = name
+
+  /**
+  * The points of the player.
+  * @type {number}
+  */
+  this.points = 0
+
+  /**
+  * An array representing the current hand.
+  * @type {Array}
+  */
+  this.hand = []
+
+  /**
+  * The limit of the player.
+  * @type {number}
+  */
+  this.limit = 15
+
+  /**
+   * The number of aces worth 14 in a hand.
+   * @type {number}
    */
-  constructor (name = 'Dealer') {
-    /**
-     * The name of the player. Defaults to 'Dealer'.
-     * @type {string}
-     */
-    this.name = name
+  this.ace = 0
+}
 
-    /**
-     * The points of the player.
-     * @type {number}
-    */
-    this.points = 0
+Hand.prototype.randomizeLimit = function () {
+  this.limit = Math.floor((Math.random() * 5) + 15)
+}
 
-    /**
-     * An array representing the current hand.
-     * @type {Array}
-     */
-    this.hand = []
-
-    this.limit = 15
-
-    this.ace = false
-  }
-
-  randomizeLimit () {
-    console.log(this)
-    this.limit = Math.floor((Math.random() * 5) + 15)
-    console.log(this)
-  }
-
-  /**
-   *Returns the sum of the hand.
+/**
+   * Sets the sum of the players hand.
    *
-   * @returns {number} - A number representing the sum of the hand.
    * @memberof Hand
    */
-  sum () {
-    let totalOfCards = 0
-    for (let i = 0; i < this.hand.length; i++) {
-      if (this.hand[i].value === 14) {
-        this.ace = true
-      }
-      totalOfCards += this.hand[i].value
+Hand.prototype.sum = function () {
+  let totalOfCards = 0
+  for (let i = 0; i < this.hand.length; i++) {
+    if (this.hand[i].getValue() === 14) {
+      this.ace += 1
     }
-    if (this.ace && totalOfCards > 21) {
-      totalOfCards -= 13
-      this.ace = false
-    }
-
-    this.points = totalOfCards
+    totalOfCards += this.hand[i].value
   }
+  if (this.ace > 0 && totalOfCards > 21) {
+    totalOfCards -= this.ace * 13
+    this.ace = 0
+  }
+  this.points = totalOfCards
+}
 
-  /**
-   * Returns a string of the current players hand.
+/**
+   * Logs a string of the current players hand and score.
    *
-   * @returns {string} - A string of the current players hand.
    * @memberof Hand
    */
-  toString () {
-    let str = ''
-    for (let i = 0; i < this.hand.length; i++) {
-      str += this.hand[i].numberAndSuit + ' '
-    }
-    return this.points <= 21
-      ? console.log(`${this.name}: ${str}(${this.points})`)
-      : console.log(`${this.name}: ${str}(${this.points}) BUSTED!`)
+Hand.prototype.toString = function () {
+  let str = ''
+  for (let i = 0; i < this.hand.length; i++) {
+    str += this.hand[i].numberAndSuit + ' '
+  }
+  if (this.points <= 21) {
+    console.log(`${this.name}: ${str}(${this.points})`)
+  } else {
+    console.log(`${this.name}: ${str}(${this.points}) BUSTED!`)
   }
 }
 

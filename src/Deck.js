@@ -33,6 +33,11 @@ class Deck {
     this.throw = []
   }
 
+  /**
+   * Generates a deck of cards.
+   *
+   * @memberof Deck
+   */
   generateDeck () {
     const suits = ['♡', '♤', '♧', '♢']
     const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
@@ -50,7 +55,7 @@ class Deck {
   /**
    * Returns this.deck shuffled.
    *
-   * @returns {array} - this.deck shuffled.
+   * @returns {array} this.deck shuffled.
    * @memberof Deck
    */
   shuffleDeck () {
@@ -73,9 +78,9 @@ class Deck {
   }
 
   /**
-   *Deals one card to a specified hand.
+   * Returns one card to a specified hand.
    *
-   * @returns The first card of the deck.
+   * @returns the first card of the deck.
    * @memberof Deck
    */
   dealOneCard () {
@@ -83,7 +88,7 @@ class Deck {
   }
 
   /**
-   * Merge the throwpile(throw) and the drawpile(deck).
+   * Merge the throwpile(this.throw) and the drawpile(this.deck).
    *
    * @memberof Deck
    */
