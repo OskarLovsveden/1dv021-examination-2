@@ -56,10 +56,29 @@ class Game {
     }
   }
 
+  /**
+   * Deals a card repeatedly up to the limit of the player.
+   *
+   * @param {Object} player
+   * @memberof Game
+   */
   dealCardsUntilPlayerLimit (player) {
     while (player.points < this.limit) {
+      this.deck.mergeThrowAndDeck()
       player.hand.push(this.deck.dealOneCard())
       player.sum()
+    }
+  }
+
+  /**
+   * Throws the players hand in the throwpile.
+   *
+   * @param {array} playerHand
+   * @memberof Game
+   */
+  throwCardsInHand (playerHand) {
+    for (let i = 0; i < playerHand.length; i++) {
+      this.deck.throw.push(playerHand[i])
     }
   }
 
@@ -73,6 +92,7 @@ class Game {
       this.players[i].sum()
 
       this.dealCardsUntilPlayerLimit(this.players[i])
+
       if (this.players[i].points > 21) {
         const dealer = new Hand()
         this.logPlayerScore(this.players[i], dealer, false)
@@ -82,6 +102,7 @@ class Game {
       } else {
         this.dealerPlays(i)
       }
+      this.throwCardsInHand(this.players[i].hand)
     }
   }
 
@@ -95,6 +116,7 @@ class Game {
     const dealer = new Hand()
 
     this.dealCardsUntilPlayerLimit(dealer)
+
     if (dealer.points > this.players[indexOfPlayers].points && dealer.points <= 21) {
       // Dealer wins
       this.logPlayerScore(this.players[indexOfPlayers], dealer, false)
@@ -105,6 +127,7 @@ class Game {
       // Player wins
       this.logPlayerScore(this.players[indexOfPlayers], dealer, true)
     }
+    this.throwCardsInHand(dealer.hand)
   }
 
   /**
@@ -120,9 +143,9 @@ class Game {
     player.toString()
     dealer.toString()
     if (playerWin === true) {
-      console.log('player win\n-')
+      console.log('Player win!\n-')
     } else {
-      console.log('dealer win\n-')
+      console.log('Dealer win!\n-')
     }
   }
 

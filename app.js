@@ -7,8 +7,9 @@
 
 'use strict'
 const Game = require('./src/Game')
-const game = new Game(10)
+const game = new Game(45)
 game.startGame()
+console.log(game.deck.throw)
 
 //  Ange antal spelare
 //  Ange när spelare och giv är nöjda

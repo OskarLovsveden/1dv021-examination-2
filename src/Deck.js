@@ -91,6 +91,7 @@ class Deck {
         this.deck.push(this.throw[i])
       }
       this.throw = []
+      this.shuffleDeck()
     }
   }
 }
