@@ -71,13 +71,27 @@ class Deck {
   }
 
   /**
-   * Deals one card to a specified hand.
+   *Deals one card to a specified hand.
    *
+   * @returns The first card of the deck.
    * @memberof Deck
    */
   dealOneCard () {
-    const card = this.deck.shift()
-    return card
+    return this.deck.shift()
+  }
+
+  /**
+   * Merge the throwpile(throw) and the drawpile(deck).
+   *
+   * @memberof Deck
+   */
+  mergeThrowAndDeck () {
+    if (this.deck.length === 1) {
+      for (let i = 0; i < this.throw.length; i++) {
+        this.deck.push(this.throw[i])
+      }
+      this.throw = []
+    }
   }
 }
 

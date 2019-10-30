@@ -89,7 +89,6 @@ class Game {
       } else {
         this.dealerPlays(i)
       }
-      // push to throw
     }
   }
 
@@ -115,6 +114,10 @@ class Game {
       // Player wins
       this.logPlayerScore(this.players[indexOfPlayers], dealer, true)
     }
+    for (let i = 0; i < dealer[i].hand; i++) {
+      this.deck.throw.push(dealer.hand.shift())
+    }
+    console.log(this.deck.throw)
   }
 
   /**
