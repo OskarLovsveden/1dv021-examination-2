@@ -56,15 +56,11 @@ class Game {
     }
   }
 
-  /**
-   * Starts the game.
-   *
-   * @memberof Game
-   */
-  startGame () {
-    this.createPlayer()
-    this.dealOneCardEach()
-    this.playersPlay()
+  dealCardsUntilPlayerLimit (player) {
+    while (player.points < this.limit) {
+      player.hand.push(this.deck.dealOneCard())
+      player.sum()
+    }
   }
 
   /**
@@ -76,10 +72,7 @@ class Game {
     for (let i = 0; i < this.players.length; i++) {
       this.players[i].sum()
 
-      while (this.players[i].points < this.limit) {
-        this.players[i].hand.push(this.deck.dealOneCard())
-        this.players[i].sum()
-      }
+      this.dealCardsUntilPlayerLimit(this.players[i])
       if (this.players[i].points > 21) {
         const dealer = new Hand()
         this.logPlayerScore(this.players[i], dealer, false)
@@ -100,10 +93,8 @@ class Game {
    */
   dealerPlays (indexOfPlayers) {
     const dealer = new Hand()
-    while (dealer.points < this.limit) {
-      dealer.hand.push(this.deck.dealOneCard())
-      dealer.sum()
-    }
+
+    this.dealCardsUntilPlayerLimit(dealer)
     if (dealer.points > this.players[indexOfPlayers].points && dealer.points <= 21) {
       // Dealer wins
       this.logPlayerScore(this.players[indexOfPlayers], dealer, false)
@@ -114,10 +105,6 @@ class Game {
       // Player wins
       this.logPlayerScore(this.players[indexOfPlayers], dealer, true)
     }
-    for (let i = 0; i < dealer[i].hand; i++) {
-      this.deck.throw.push(dealer.hand.shift())
-    }
-    console.log(this.deck.throw)
   }
 
   /**
@@ -139,6 +126,16 @@ class Game {
     }
   }
 
+  /**
+   * Starts the game.
+   *
+   * @memberof Game
+   */
+  startGame () {
+    this.createPlayer()
+    this.dealOneCardEach()
+    this.playersPlay()
+  }
 // Släng kort
 // blanda in slängkort om deck = 1
 //
@@ -148,9 +145,3 @@ class Game {
 
 // Exports
 module.exports = Game
-
-/**
- * Har mängden spelare
- */
-// const game = new Game(10)
-// game.startGame()
